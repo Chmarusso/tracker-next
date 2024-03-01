@@ -1,5 +1,5 @@
 import { type NextRequest } from 'next/server'
-import { createEvent } from "@/services/events"
+import { createEvent, getEvents } from "@/services/events"
 import { z } from "zod";
 
 const schema = z.object({
@@ -9,6 +9,16 @@ const schema = z.object({
   userId: z.string(),
   gaClientId: z.string().optional()
 })
+
+export async function GET(req: NextRequest) {
+  if(req.headers.get("authorization") !== "Bearer secret") {
+    return Response.json({ error: { message: "Unauthorized" }}, { status: 401 });
+  }
+  
+  const allEvents = await getEvents();
+
+  return Response.json(allEvents)
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.json()

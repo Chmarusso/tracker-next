@@ -34,7 +34,7 @@ curl --location 'http://localhost:3000/api/tracking' \
 }'
 ```
 
-## How to test online?
+## How to test adding events online?
 ```
 curl --location 'https://next-tracker-kappa.vercel.app/api/tracking' \
 --header 'Content-Type: application/json' \
@@ -44,6 +44,12 @@ curl --location 'https://next-tracker-kappa.vercel.app/api/tracking' \
     "userId": "vitalik.eth",
     "parameter": "param_wallet"
 }'
+```
+
+## How to test fetching events online?
+```
+curl --location 'https://next-tracker-kappa.vercel.app/api/tracking' \
+--header 'Authorization: Bearer secret'
 ```
 
 ## How to integrate with jumper.exchange?
